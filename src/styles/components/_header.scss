@@ -1,0 +1,21 @@
+.header {
+    
+    align-items: flex-end;
+    background-color: rgb(128, 48, 194);
+    display: flex;
+    justify-content: space-around;
+    min-height: 35vh;
+    padding-bottom: 1rem;
+
+
+    &__button {
+        background: transparent;
+        border-bottom: 2px solid white;
+        color: white;
+        text-decoration: none;
+
+        @media (max-width: 450px) {
+            display: none;
+        }
+    }
+}

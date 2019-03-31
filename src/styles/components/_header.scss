@@ -4,7 +4,7 @@
     background-color: rgb(128, 48, 194);
     display: flex;
     justify-content: space-around;
-    min-height: 35vh;
+    min-height: 10vh;
     padding-bottom: 1rem;
 
 
@@ -12,6 +12,7 @@
         background: transparent;
         border-bottom: 2px solid white;
         color: white;
+        font-size: 2rem;
         text-decoration: none;
 
         @media (max-width: 450px) {
@@ -19,3 +20,4 @@
         }
     }
 }
+

@@ -1,0 +1,29 @@
+.child {
+    border: 1px solid #ccc;
+    width: 20vw;
+    min-width: 25rem;
+    min-height: 320px;
+    height: auto;
+    margin: 10px;
+    border-radius: 5px;
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    &__title {
+        text-align: center;
+        margin: 1rem;
+        font-size: 2.5rem;
+    }
+}
+
+@media(min-width:500px) {
+    .child {
+        width: 40%;
+    }
+}

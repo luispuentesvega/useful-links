@@ -1,6 +1,6 @@
 .child {
     border: 1px solid #ccc;
-    width: 20vw;
+    width: 90vw;
     min-width: 25rem;
     min-height: 320px;
     height: auto;
@@ -22,7 +22,7 @@
     }
 }
 
-@media(min-width:500px) {
+@media(min-width:450px) {
     .child {
         width: 40%;
     }

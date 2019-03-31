@@ -1,0 +1,23 @@
+
+.caption p {
+    padding: 3px 3px 3px 10px;
+}
+
+.link {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-right: 10px;
+
+    &__icons img {
+        margin-right: 5px;
+        cursor: pointer;
+    }
+    
+    a {
+        text-decoration: none;
+        color: rgb(39, 147, 248);
+        font-size: 1.4rem;
+    }
+}
+

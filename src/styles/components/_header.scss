@@ -1,12 +1,16 @@
 .header {
     
-    align-items: flex-end;
-    background-color: rgb(128, 48, 194);
+    background-color: #764ABC;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     min-height: 10vh;
     padding-bottom: 1rem;
+    flex-direction: column;
 
+    @media (min-width: 450px) {
+        flex-direction: row;
+    }
 
     &__button {
         background: transparent;
@@ -14,9 +18,15 @@
         color: white;
         font-size: 2rem;
         text-decoration: none;
+        width: 90vw;
+        text-align: center;
+        padding: 0.5rem;
+        cursor: pointer;
 
-        @media (max-width: 450px) {
-            display: none;
+        @media (min-width: 450px) {
+            width: 20%;
+            height: 30px;
+            border-bottom: none;
         }
     }
 }

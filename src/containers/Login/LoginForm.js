@@ -29,7 +29,7 @@ class LoginForm extends React.Component {
                 <Button type="submit" buttonName="Login" />
                 <ButtonLink href="https://www.facebook.com" linkName="Login with facebook" />
                 <ButtonLink href="https://www.google.com/gmail" linkName="Login with gmail" />
-                <p>Don't have any account ? <a href="#">Register</a></p>
+                <p>Don't have any account ? <a href="https://www.google.com">Register</a></p>
             </form>
         )
     } 

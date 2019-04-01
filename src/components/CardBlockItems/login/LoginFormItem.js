@@ -1,13 +1,13 @@
 import React from 'react'
-import TopicForm from './../../../containers/Topic/TopicForm'
 import FormCardBlock from './../../UI/CardBlocks/FormCardBlock';
+import LoginForm from './../../../containers/Login/LoginForm';
 
-const TopicFormItem = (props) => {
+const LoginFormItem = (props) => {
     return (
         <FormCardBlock>
-            <TopicForm />
+            <LoginForm />
         </FormCardBlock>
     )
 }
 
-export default TopicFormItem
+export default LoginFormItem

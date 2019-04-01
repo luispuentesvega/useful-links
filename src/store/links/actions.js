@@ -9,3 +9,12 @@ export const addLink = (languageName, linkTitle, linkUrl) => {
     }
 }
 
+export const addTopic = (topicName) => {
+    return {
+        type: 'ADD_TOPIC',
+        data: {
+            topicName
+        }
+    }
+}
+

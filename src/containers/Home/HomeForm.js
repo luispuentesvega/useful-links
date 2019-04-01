@@ -1,12 +1,12 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import * as action from '../store/links/actions'
-import Button from './../components/UI/Buttons/Button'
-import Input from './../components/UI/Inputs/Input'
-import Select from './../components/UI/Selects/Select'
+import * as action from '../../store/links/actions'
+import Button from '../../components/UI/Buttons/Button'
+import Input from '../../components/UI/Inputs/Input'
+import Select from '../../components/UI/Selects/Select'
 
-class Form extends React.Component {
+class HomeForm extends React.Component {
     state = { linkTitle: '', linkUrl: '', languageName: '' }
 
     onChangeLinkInput = (e) => {
@@ -54,4 +54,4 @@ const mapDispatchToProps = dispatch => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Form)
+export default connect(mapStateToProps, mapDispatchToProps)(HomeForm)

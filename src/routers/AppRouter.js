@@ -1,11 +1,12 @@
 import React from 'react'
 import { Route, Switch, BrowserRouter } from 'react-router-dom'
-import Home from './../containers/Home'
-import Topics from './../containers/Topics'
-import About from './../containers/About'
-import Login from './../containers/Login'
-import NotFoundPage from './../components/NotFoundPage'
-import Header from '../components/Header';
+
+import Home from './../components/Home';
+import Header from './../components/Header';
+import Topics from './../components/Topic';
+import About from './../components/About';
+import Login from './../components/Login';
+import NotFoundPage from './../components/NotFoundPage';
 
 
 const AppRouter = () => {

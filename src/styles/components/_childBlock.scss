@@ -2,10 +2,15 @@
     border: 1px solid #ccc;
     width: 20vw;
     min-width: 25rem;
-    min-height: 320px;
+    min-height: 10;
+    max-width: 30rem;
     height: auto;
     margin: 10px;
-    border-radius: 5px;
+    border-radius: 10px;
+
+    @media (min-width: 500px) {
+        min-height: 28rem;
+    }
 
     form {
         display: flex;
@@ -27,3 +32,4 @@
         width: 40%;
     }
 }
+

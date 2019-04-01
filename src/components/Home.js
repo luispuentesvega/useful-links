@@ -1,11 +1,10 @@
 import React, { Component, Fragment } from 'react';
-import BlockList from './../components/ChildBlock/BlockList'
+import BlockList from './CardBlockItems/BlockList'
 
 class Home extends Component {
     render() {
         return (
             <Fragment>
-                Home Component
                 <BlockList />
             </Fragment>
         );

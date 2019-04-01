@@ -34,6 +34,11 @@ const LinkReducer = (state = defaultState, action) => {
                 }
                 return languageObj
             })
+        case 'ADD_TOPIC':
+            return state.concat({
+                languageName: action.data.topicName,
+                mappingTitleandLink: {}
+            })
         default:
             return state
     }

@@ -1,13 +1,13 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
-import FormItem from './FormItem'
-import LanguageItem from './LanguageItem'
+import HomeFormItem from '../CardBlockItems/home/HomeFormItem'
+import LanguageItem from './LanguageCardItem'
 
 const BlockList = (props) => {
     return (
         <div className="container">
-            <FormItem />
+            <HomeFormItem />
             {props.languageObjs.map((languageObj, index) => {
                 return <LanguageItem key={index} languageObj={languageObj} />
             })}

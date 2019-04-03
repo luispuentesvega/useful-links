@@ -17,7 +17,7 @@ const BlockList = (props) => {
 
 const mapStateToProps = state => {
     return {
-        languageObjs: state.languages
+        languageObjs: state.links
     }
 }
 

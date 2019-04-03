@@ -1,4 +1,7 @@
 import React from 'react';
+import editIcon from '../../assets/images/edit.png';
+import removeIcon from '../../assets/images/remove.png';
+
 
 const TopicItem = (props) => {
     return (
@@ -7,8 +10,8 @@ const TopicItem = (props) => {
                 { props.name }
             </span>
             <span className="topic__icons">
-                <img src="/img/edit.png" alt="edit" />
-                <img src="/img/remove.png" alt="remove" />
+                <img src={editIcon} alt="edit" />
+                <img src={removeIcon} alt="remove" />
             </span>
         </p>
     );

@@ -24,7 +24,6 @@ class Form extends React.Component {
     onFormSubmit = (e) => {
         e.preventDefault()
         this.props.addLinkToLanguageRedux(this.state.languageName, this.state.linkTitle, this.state.linkUrl)
-        console.log('testing onFormSubmit')
     }
 
     render () {
@@ -42,7 +41,7 @@ class Form extends React.Component {
 
 const mapStateToProps = state => {
     return {
-        languages: state.languages.map(languageObj => {
+        languages: state.links.map(languageObj => {
             return languageObj.languageName
         })
     }

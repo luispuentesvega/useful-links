@@ -1,0 +1,6 @@
+
+export const ADD_TOPIC = 'ADD_TOPIC_REQUEST';
+export const ADD_TOPIC_SUCCESS = 'ADD_TOPIC_SUCCESS';
+export const ADD_TOPIC_FAILURE = 'ADD_TOPIC_FAILURE';
+
+export const LIST_TOPICS = 'LIST_TOPICS';

@@ -1,8 +1,6 @@
 import React from 'react';
-import Select from '../../containers/Form';
 import Input from '../UI/Inputs/Input';
 import Button from '../UI/Buttons/Button';
-
 
 const TopicForm = (props) => {
     return (
@@ -14,7 +12,7 @@ const TopicForm = (props) => {
                     placeholder="Topic"
                     value={props.name}
                     onChange={props.onChangeNameInput}/>
-                <Button buttonName="Create" type="submit"/>
+                <Button buttonName={props.buttonName} type="submit"/>
             </form>
         </div>
     );

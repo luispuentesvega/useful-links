@@ -3,9 +3,8 @@ import axios from '../../axios-links';
 
 export const addTopic = (name, id) => {
     return dispatch => {
-        axios.post('links.json', {
-            name: name,
-            id: id
+        axios.post('topics.json', {
+            name: name
         })
         .then(res => {
             dispatch(listTopics());
@@ -34,10 +33,15 @@ export const addTopicFailure = (error) => {
 
 export const listTopics = () => {
     return dispatch => {
-        axios.get('links.json')
+        axios.get('topics.json')
             .then(res => {
                 let topics = [];
-                Object.keys(res.data).map(idx => topics.push(res.data[idx]));
+                Object.keys(res.data).map(idx => {
+                    topics.push({
+                        id: idx,
+                        name:res.data[idx].name
+                    })
+                });
                 dispatch(listTopicSuccess(topics));
             })
             .catch(err => {
@@ -52,3 +56,23 @@ export const listTopicSuccess = (list) => {
         data: list
     }
 };
+
+export const editTopic = (id) => {
+    return dispatch => {
+        axios.get(`topics/`+id+`.json`)
+            .then(res => {
+                dispatch(editTopicSuccess(res.data));
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+}
+
+
+export const editTopicSuccess = (topic) => {
+    return {
+        type: actionTypes.EDIT_TOPIC_SUCCESS,
+        data: topic
+    }
+}

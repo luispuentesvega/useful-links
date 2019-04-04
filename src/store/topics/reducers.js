@@ -1,12 +1,25 @@
-const defaultState = [];
+const defaultState = {
+        topics: [],
+        currrent: {
+            name: ''
+        }
+    };
 
 const TopicReducer = (state = defaultState, action) => {
     switch (action.type) {
         case 'ADD_TOPIC':
-            return [...state, action.data.name];
+            return [...state, {
+                name: action.data.name
+            }];
         case 'LIST_TOPICS':
             return {
-                ...action.data
+                ...state,
+                topics: action.data
+            };
+        case 'EDIT_TOPIC_SUCCESS':
+            return {
+                ...state,
+                current: action.data
             };
         default:
             return state;

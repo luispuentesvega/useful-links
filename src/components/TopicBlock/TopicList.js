@@ -12,7 +12,7 @@ const TopicList = (props) => {
                             key={idx}
                             id={topic.id}
                             name={topic.name}
-                        />
+                            onEdit={props.onEdit}/>
                     );
                 }) }
             </div>

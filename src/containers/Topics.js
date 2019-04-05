@@ -9,6 +9,15 @@ class Topics extends Component {
     state = {
         name: '',
         validating: false,
+        loading: false,
+    }
+
+    hideLoader = () => {
+        this.setState({ loading: false })
+    }
+
+    showLoader = () => {
+        this.setState({ loading: true })
     }
 
     onFormSubmit = e => {
@@ -53,7 +62,18 @@ class Topics extends Component {
     }
 
     componentDidMount() {
-        this.props.list()
+        this.showLoader()
+        const _this = this
+
+        this.props
+            .list()
+            .then(() => {
+                _this.hideLoader()
+            })
+            .catch(err => {
+                _this.hideLoader()
+                console.log('err:', err)
+            })
     }
 
     render() {
@@ -69,7 +89,11 @@ class Topics extends Component {
                     buttonName="CREATE"
                     validating={validating}
                 />
-                <TopicList topics={topics} onDelete={this.onDelete} />
+                <TopicList
+                    topics={topics}
+                    onDelete={this.onDelete}
+                    loading={this.state.loading}
+                />
             </Fragment>
         )
     }
@@ -92,5 +116,5 @@ const mapDispatchToProps = dispatch => {
 
 export default connect(
     mapStateToProps,
-    mapDispatchToProps
+    mapDispatchToProps,
 )(Topics)

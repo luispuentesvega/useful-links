@@ -36,23 +36,27 @@ export const addTopicError = error => {
 
 export const listTopics = () => {
     return dispatch => {
-        axios
-            .get('topics.json')
-            .then(res => {
-                let topics = []
-                if (res.data != null) {
-                    Object.keys(res.data).map(idx => {
-                        topics.push({
-                            id: idx,
-                            name: res.data[idx].name,
+        return new Promise(function(resolve, reject) {
+            axios
+                .get('topics.json')
+                .then(res => {
+                    let topics = []
+                    if (res.data != null) {
+                        Object.keys(res.data).map(idx => {
+                            topics.push({
+                                id: idx,
+                                name: res.data[idx].name,
+                            })
                         })
-                    })
-                }
-                dispatch(listTopicSuccess(topics))
-            })
-            .catch(err => {
-                console.log('err:', err)
-            })
+                    }
+                    dispatch(listTopicSuccess(topics))
+                    resolve()
+                })
+                .catch(err => {
+                    reject()
+                    console.log('err:', err)
+                })
+        })
     }
 }
 

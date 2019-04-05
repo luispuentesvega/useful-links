@@ -1,78 +1,131 @@
-import * as actionTypes from './constants';
-import axios from '../../axios-links';
+import * as actionTypes from './constants'
+import axios from '../../axios-links'
 
-export const addTopic = (name, id) => {
+export const addTopic = name => {
     return dispatch => {
-        axios.post('topics.json', {
-            name: name
+        return new Promise(function(resolve, reject) {
+            axios
+                .post('topics.json', {
+                    name: name,
+                })
+                .then(() => {
+                    dispatch(addTopicSuccess())
+                    dispatch(listTopics())
+                    resolve()
+                })
+                .catch(err => {
+                    console.log('err:', err)
+                    reject()
+                })
         })
-        .then(res => {
-            dispatch(listTopics());
-        })
-        .catch(err => {
-            console.log('Errr:::', err);
-        });
-    };
-};
+    }
+}
 
-export const addTopicSuccess = (name) => {
+export const addTopicSuccess = () => {
     return {
         type: actionTypes.ADD_TOPIC_SUCCESS,
-        data: {
-            name
-        }
     }
-};
+}
 
-export const addTopicFailure = (error) => {
+export const addTopicError = error => {
     return {
-        type: actionTypes.ADD_TOPIC_FAILURE,
-        error
+        type: actionTypes.ADD_TOPIC_ERROR,
+        error,
     }
-};
+}
 
 export const listTopics = () => {
     return dispatch => {
-        axios.get('topics.json')
+        axios
+            .get('topics.json')
             .then(res => {
-                let topics = [];
-                Object.keys(res.data).map(idx => {
-                    topics.push({
-                        id: idx,
-                        name:res.data[idx].name
+                let topics = []
+                if (res.data != null) {
+                    Object.keys(res.data).map(idx => {
+                        topics.push({
+                            id: idx,
+                            name: res.data[idx].name,
+                        })
                     })
-                });
-                dispatch(listTopicSuccess(topics));
+                }
+                dispatch(listTopicSuccess(topics))
             })
             .catch(err => {
-                console.log('ERROR: ',err);
-            });
-    }
-};
-
-export const listTopicSuccess = (list) => {
-    return {
-        type: actionTypes.LIST_TOPICS,
-        data: list
-    }
-};
-
-export const editTopic = (id) => {
-    return dispatch => {
-        axios.get(`topics/`+id+`.json`)
-            .then(res => {
-                dispatch(editTopicSuccess(res.data));
-            })
-            .catch(err => {
-                console.log(err);
+                console.log('err:', err)
             })
     }
 }
 
+export const listTopicSuccess = list => {
+    return {
+        type: actionTypes.LIST_TOPICS,
+        data: list,
+    }
+}
 
-export const editTopicSuccess = (topic) => {
+export const editTopic = id => {
+    return dispatch => {
+        return new Promise(function(resolve, reject) {
+            axios
+                .get(`topics/` + id + `.json`)
+                .then(res => {
+                    dispatch(editTopicSuccess(res.data))
+                    resolve()
+                })
+                .catch(err => {
+                    console.log('err:', err)
+                    reject()
+                })
+        })
+    }
+}
+
+export const editTopicSuccess = topic => {
     return {
         type: actionTypes.EDIT_TOPIC_SUCCESS,
-        data: topic
+        data: topic,
+    }
+}
+
+export const deleteTopic = id => {
+    return dispatch => {
+        return new Promise(function(resolve, reject) {
+            axios
+                .delete(`topics/${id}.json`)
+                .then(() => {
+                    dispatch(listTopics())
+                    resolve()
+                })
+                .catch(err => {
+                    console.log('err:', err)
+                    reject()
+                })
+        })
+    }
+}
+
+export const updateTopic = (id, name) => {
+    return dispatch => {
+        return new Promise(function(resolve, reject) {
+            axios
+                .put(`topics/${id}.json`, {
+                    name: name,
+                })
+                .then(() => {
+                    dispatch(updateTopicSuccess())
+                    dispatch(listTopics())
+                    resolve()
+                })
+                .catch(err => {
+                    console.log('err:', err)
+                    reject()
+                })
+        })
+    }
+}
+
+export const updateTopicSuccess = () => {
+    return {
+        type: actionTypes.UPDATE_TOPIC_SUCCESS,
     }
 }

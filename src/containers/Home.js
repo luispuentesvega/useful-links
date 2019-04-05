@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react';
+import React, { Component, Fragment } from 'react'
 import BlockList from './../components/ChildBlock/BlockList'
 
 class Home extends Component {
@@ -7,8 +7,8 @@ class Home extends Component {
             <Fragment>
                 <BlockList />
             </Fragment>
-        );
+        )
     }
 }
 
-export default Home;
+export default Home

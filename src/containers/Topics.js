@@ -1,87 +1,96 @@
-import React, { Component, Fragment } from 'react';
-import { connect } from "react-redux";
-import uuidv1 from 'uuid';
-import { addTopic, editTopic, listTopics } from "../store/topics/actions";
-import TopicForm from '../components/TopicBlock/TopicForm';
-import TopicList from '../components/TopicBlock/TopicList';
-import SweetAlert from 'sweetalert-react';
-import 'sweetalert/dist/sweetalert.css';
+import React, { Component, Fragment } from 'react'
+import { connect } from 'react-redux'
+import { addTopic, listTopics, deleteTopic } from '../store/topics/actions'
+import TopicForm from '../components/TopicBlock/TopicForm'
+import TopicList from '../components/TopicBlock/TopicList'
+import { success, error } from '../utils/utils'
 
 class Topics extends Component {
     state = {
         name: '',
-        show: false,
-        error: ''
-    };
+        validating: false,
+    }
 
     onFormSubmit = e => {
-        e.preventDefault();
+        e.preventDefault()
         if (!this.isValidTheForm()) {
-            return;
+            return false
         }
-        this.props.add(this.state.name, uuidv1());
+        this.props
+            .add(this.state.name)
+            .then(() => {
+                this.setState({
+                    validating: false,
+                    name: '',
+                })
+                success('Created successfully!')
+            })
+            .catch(() => {
+                error()
+            })
+    }
+
+    onDelete = id => {
+        this.props
+            .delete(id)
+            .then(() => {
+                success('Deleted successfully!')
+            })
+            .catch(() => {
+                error()
+            })
     }
 
     isValidTheForm = () => {
-        if (!this.state.name) {
-            this.setState({ show: true, error:'Must fill up the Name' });
-            return false;
-        }
-        return true;
+        this.setState({ validating: true })
+        return this.state.name
     }
 
     onChangeNameInput = e => {
-        this.setState({ name: e.target.value});
+        this.setState({
+            name: e.target.value,
+        })
     }
 
     componentDidMount() {
-        this.props.list();
-    }
-
-    onEdit = (id) => {
-        this.props.edit(id);
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState({ name : (this.props.current ? this.props.current.name : '') })
+        this.props.list()
     }
 
     render() {
+        const { topics } = this.props
+        const { name, validating } = this.state
+
         return (
             <Fragment>
-                <SweetAlert
-                    show={this.state.show}
-                    title="Error"
-                    text={this.state.error}
-                    onConfirm={() => this.setState({ show: false })}
-                />;
                 <TopicForm
                     onSubmit={this.onFormSubmit}
-                    name={this.state.name}
+                    name={name}
                     onChangeNameInput={this.onChangeNameInput}
-                    buttonName="CREATE"/>
-                {  <TopicList
-                    topics={this.props.topics}
-                    onEdit={this.onEdit}/>
-                }
+                    buttonName="CREATE"
+                    validating={validating}
+                />
+                <TopicList topics={topics} onDelete={this.onDelete} />
             </Fragment>
-            );
+        )
     }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
         topics: state.topics.topics,
-        current: state.topics.current,
-     }
-};
+        success: state.topics.success,
+    }
+}
 
 const mapDispatchToProps = dispatch => {
     return {
-        add: (name, id) => dispatch(addTopic(name, id)),
+        add: name => dispatch(addTopic(name)),
         list: () => dispatch(listTopics()),
-        edit: (id) => dispatch(editTopic(id))
+        delete: id => dispatch(deleteTopic(id)),
     }
-};
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(Topics);
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Topics)

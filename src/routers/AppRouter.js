@@ -6,8 +6,9 @@ import TopicEdit from './../containers/TopicEdit'
 import About from './../containers/About'
 import Login from './../containers/Login'
 import NotFoundPage from './../components/NotFoundPage'
-import Header from '../components/Header';
-
+import Header from '../components/Header'
+import { ToastContainer } from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css'
 
 const AppRouter = () => {
     return (
@@ -21,6 +22,7 @@ const AppRouter = () => {
                 <Route path="/login" component={Login} />
                 <Route component={NotFoundPage} />
             </Switch>
+            <ToastContainer />
         </BrowserRouter>
     )
 }

@@ -44,11 +44,8 @@ class TopicEdit extends Component {
     }
 
     isValidTheForm = () => {
-        if (!this.state.name) {
-            alert('Must fill up the Name!')
-            return false
-        }
-        return true
+        this.setState({ validating: true })
+        return this.state.name
     }
 
     componentDidMount() {
@@ -68,13 +65,16 @@ class TopicEdit extends Component {
     }
 
     render() {
+        const { name, validating } = this.state
+
         return (
             <Fragment>
                 <TopicForm
                     onSubmit={this.onFormSubmit}
-                    name={this.state.name}
+                    name={name}
                     onChangeNameInput={this.onChangeNameInput}
                     buttonName="EDIT"
+                    validating={validating}
                 />
                 <div style={divStyle}>
                     <Button

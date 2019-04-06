@@ -73,6 +73,7 @@ class Topics extends Component {
             .catch(err => {
                 _this.hideLoader()
                 console.log('err:', err)
+                error(err)
             })
     }
 

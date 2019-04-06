@@ -1,9 +1,15 @@
 import React from 'react'
 
-const Input = (props) => {
+const Input = props => {
     return (
         <React.Fragment>
-            <input className="input" type={props.type} value={props.value} placeholder={props.placeholder} {...props}/>
+            <input
+                className="input"
+                type={props.type}
+                value={props.value}
+                placeholder={props.placeholder}
+                {...props}
+            />
         </React.Fragment>
     )
 }

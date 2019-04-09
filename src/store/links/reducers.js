@@ -1,39 +1,30 @@
-// languageObj = {
-//     languageName: 'php',
-//     mappingTitleandLink: {
-//         linkitle: linkUrl
-//     }
-// }
-const defaultState = [
-    {
-        languageName: 'php',
-        mappingTitleandLink: {
-            'phpHomepage': 'www.php.co.th'
-        }
+const defaultState = {
+    topics: [],
+    currrent: {
+        topic: '',
+        title: '',
+        url: '',
     },
-    {
-        languageName: 'javascript',
-        mappingTitleandLink: {
-            'javascriptHomePage': 'www.javascript.co.th'
-        }
-    }
-]
+    success: false,
+}
 
 const LinkReducer = (state = defaultState, action) => {
     switch (action.type) {
-        case 'ADD_LINK':
-            return state.map(languageObj => {
-                if (languageObj.languageName === action.data.languageName) {
-                    return {
-                        ...languageObj,
-                        mappingTitleandLink: {
-                            ...languageObj.mappingTitleandLink,
-                            [action.data.linkTitle]: action.data.linkUrl
-                        }
-                    }
-                }
-                return languageObj
-            })
+        case 'LIST_LINKS_SUCCESS':
+            return {
+                ...state,
+                links: action.data,
+            }
+        case 'EDIT_LINK_SUCCESS':
+            return {
+                ...state,
+                current: action.data,
+            }
+        case 'UPDATE_LINK_SUCCESS':
+            return {
+                ...state,
+                success: true,
+            }
         default:
             return state
     }

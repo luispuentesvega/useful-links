@@ -4,14 +4,15 @@ const Select = props => {
     return (
         <select
             className="select"
-            defaultValue="have-to-select"
+            value={props.default}
             onChange={props.onChange}
+            name={props.name}
         >
-            <option value="have-to-select">..Please choose one topic..</option>
+            <option value="">..Please choose one topic..</option>
             {props.options.map((option, index) => {
                 return (
-                    <option key={index} value={option}>
-                        {option}
+                    <option key={index} value={option.id}>
+                        {option.name}
                     </option>
                 )
             })}

@@ -52,7 +52,7 @@ class Topics extends Component {
 
     isValidTheForm = () => {
         this.setState({ validating: true })
-        return this.state.name
+        return this.state.name.trim() !== ''
     }
 
     onChangeNameInput = e => {
@@ -82,7 +82,7 @@ class Topics extends Component {
         const { name, validating } = this.state
 
         return (
-            <Fragment>
+            <div className="container">
                 <TopicForm
                     onSubmit={this.onFormSubmit}
                     name={name}
@@ -95,7 +95,7 @@ class Topics extends Component {
                     onDelete={this.onDelete}
                     loading={this.state.loading}
                 />
-            </Fragment>
+            </div>
         )
     }
 }

@@ -1,24 +1,30 @@
-import React from 'react'
-import { connect } from 'react-redux'
+import React, { Fragment } from 'react'
 
-import FormItem from './FormItem'
-import LanguageItem from './LanguageItem'
+import TopicItem from './TopicItem'
+import Spinner from '../UI/Spinner/Spinner'
 
-const BlockList = (props) => {
+const BlockList = props => {
     return (
-        <div className="container">
-            <FormItem />
-            {props.languageObjs.map((languageObj, index) => {
-                return <LanguageItem key={index} languageObj={languageObj} />
-            })}
-        </div>
+        <Fragment>
+            {props.loading ? (
+                <Spinner />
+            ) : (
+                props.topics.map((topic, index) => {
+                    const topicLinks = props.links.filter(
+                        link => link.topic === topic.id,
+                    )
+                    return (
+                        <TopicItem
+                            key={index}
+                            topic={topic}
+                            links={topicLinks}
+                            onDelete={props.onDelete}
+                        />
+                    )
+                })
+            )}
+        </Fragment>
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        languageObjs: state.links
-    }
-}
-
-export default connect(mapStateToProps)(BlockList)
+export default BlockList

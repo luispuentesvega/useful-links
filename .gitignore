@@ -25,3 +25,4 @@ yarn-error.log*
 #custom
 .idea/
 src/firebase.js
+src/config/fire.js

@@ -14,7 +14,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const AppRouter = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Header />
             <Switch>
                 <Route exact path="/" component={Home} />

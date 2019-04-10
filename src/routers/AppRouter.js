@@ -6,6 +6,7 @@ import TopicEdit from './../containers/TopicEdit'
 import LinkEdit from '../containers/LinkEdit'
 import About from './../containers/About'
 import Login from './../containers/Login'
+import Register from '../containers/Register'
 import NotFoundPage from './../components/NotFoundPage'
 import Header from '../components/Header'
 import { ToastContainer } from 'react-toastify'
@@ -22,6 +23,7 @@ const AppRouter = () => {
                 <Route path="/link/:id" component={LinkEdit} />
                 <Route path="/about" component={About} />
                 <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
                 <Route component={NotFoundPage} />
             </Switch>
             <ToastContainer />

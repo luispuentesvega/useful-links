@@ -1,14 +1,13 @@
 import React, { Component } from 'react'
 import fire from '../config/fire'
+import firebase from 'firebase'
 import { connect } from 'react-redux'
-import LoginForm from '../components/LoginBlock/LoginForm'
 import withUser from '../hoc/withUser'
 import * as util from '../utils/utils'
 import { setUser } from '../store/user/actions'
+import RegisterForm from '../components/RegisterBlock/RegisterForm'
 
-import firebase from 'firebase'
-
-class Login extends Component {
+class Register extends Component {
     state = {
         loading: false,
         validating: false,
@@ -16,25 +15,11 @@ class Login extends Component {
         password: '',
     }
 
-    onLogIn = e => {
-        e.preventDefault()
-        fire.auth()
-            .signInWithEmailAndPassword(this.state.email, this.state.password)
-            .then(res => {
-                console.log('res::', res)
-                this.props.history.push('/')
-            })
-            .catch(error => {
-                console.log('error::', error.message)
-                util.error(error.message)
-            })
-    }
-
     onChangeInput = e => {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSignup = e => {
+    onSubmit = e => {
         e.preventDefault()
 
         fire.auth()
@@ -42,39 +27,15 @@ class Login extends Component {
                 this.state.email,
                 this.state.password,
             )
-            .then(u => {
-                console.log(u)
+            .then(res => {
+                console.log('u::::::', res.user.email)
+                this.props.setUser(res.user.email)
                 this.props.history.push('/')
             })
             .catch(error => {
                 console.log('error::', error.message)
                 util.error(error.message)
             })
-    }
-
-    onGmailLogin = e => {
-        var provider = new firebase.auth.GoogleAuthProvider()
-
-        provider.addScope('profile')
-        provider.addScope('email')
-
-        let _this = this
-
-        firebase
-            .auth()
-            .signInWithPopup(provider)
-            .then(function(result) {
-                // This gives you a Google Access Token.
-                var token = result.credential.accessToken
-                // The signed-in user info.
-                var user = result.user
-                localStorage.setItem('user', user.email)
-                _this.props.setUser(user.email)
-            })
-    }
-
-    onRegister = () => {
-        this.props.history.push('/register')
     }
 
     render() {
@@ -83,11 +44,9 @@ class Login extends Component {
                 {this.props.user && this.props.user.email !== null ? (
                     <div> You're Logged in : {this.props.user.email}</div>
                 ) : (
-                    <LoginForm
-                        onSubmit={this.onLogIn}
-                        onRegister={this.onRegister}
+                    <RegisterForm
+                        onSubmit={this.onSubmit}
                         onChangeInput={this.onChangeInput}
-                        onGmailLogin={this.onGmailLogin}
                         loading={this.state.loading}
                         email={this.state.email}
                         password={this.state.password}
@@ -108,4 +67,4 @@ const mapDispatchToProps = dispatch => {
 export default connect(
     null,
     mapDispatchToProps,
-)(withUser(Login))
+)(Register)

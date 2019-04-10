@@ -6,6 +6,8 @@ import LinkForm from '../components/ChildBlock/LinkForm'
 import { listTopics } from '../store/topics/actions'
 import { addLink, deleteLink, listLinks } from '../store/links/actions'
 import * as util from '../utils/utils'
+import fire from '../config/fire'
+import { setUser } from '../store/user/actions'
 
 class Home extends Component {
     state = {
@@ -14,6 +16,7 @@ class Home extends Component {
         url: '',
         title: '',
         topic: '',
+        user: null,
     }
 
     hideLoader = () => {
@@ -98,6 +101,20 @@ class Home extends Component {
             .catch(err => {
                 console.log('err:', err)
             })
+
+        this.authListener()
+    }
+
+    authListener() {
+        fire.auth().onAuthStateChanged(user => {
+            if (user) {
+                localStorage.setItem('user', user.email)
+                this.props.setUser(user.email)
+            } else {
+                this.setState({ user: null })
+                localStorage.removeItem('user')
+            }
+        })
     }
 
     render() {
@@ -139,6 +156,7 @@ const mapDispatchToProps = dispatch => {
         listTopics: () => dispatch(listTopics()),
         listLinks: () => dispatch(listLinks()),
         delete: id => dispatch(deleteLink(id)),
+        setUser: user => dispatch(setUser(user)),
     }
 }
 

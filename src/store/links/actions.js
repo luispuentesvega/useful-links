@@ -86,7 +86,6 @@ export const editLink = id => {
             axios
                 .get(`links/` + id + `.json`)
                 .then(res => {
-                    console.log('res.data:::', res.data)
                     dispatch(editLinkSuccess(res.data))
                     resolve()
                 })

@@ -1,17 +1,46 @@
-import React from 'react';
+import React from 'react'
+import { connect } from 'react-redux'
+import fire from '../config/fire'
+import { compose } from 'redux'
+
+const mapStateToProps = state => ({
+    user: state.user.user,
+})
 
 const withUser = WrappedComponent => {
     class WithUser extends React.Component {
         state = {
-            user: 'Luis'
-        };
+            //user: null,
+        }
+
+        logout = () => {
+            fire.auth().signOut()
+        }
+
+        componentDidMount() {
+            console.log('withUser(', this.props.user, ')')
+        }
 
         render() {
-            return <WrappedComponent user={this.state.user} {...this.props} />;
+            return (
+                <WrappedComponent
+                    user={this.props.user}
+                    logOut={this.logout}
+                    {...this.props}
+                />
+            )
         }
     }
 
-    return WithUser;
-};
+    return WithUser
+}
 
-export default withUser;
+const composedWithUser = compose(
+    connect(
+        mapStateToProps,
+        null,
+    ),
+    withUser,
+)
+
+export default composedWithUser

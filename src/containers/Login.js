@@ -34,24 +34,6 @@ class Login extends Component {
         this.setState({ [e.target.name]: e.target.value })
     }
 
-    onSignup = e => {
-        e.preventDefault()
-
-        fire.auth()
-            .createUserWithEmailAndPassword(
-                this.state.email,
-                this.state.password,
-            )
-            .then(u => {
-                console.log(u)
-                this.props.history.push('/')
-            })
-            .catch(error => {
-                console.log('error::', error.message)
-                util.error(error.message)
-            })
-    }
-
     onGmailLogin = e => {
         var provider = new firebase.auth.GoogleAuthProvider()
 
@@ -70,6 +52,7 @@ class Login extends Component {
                 var user = result.user
                 localStorage.setItem('user', user.email)
                 _this.props.setUser(user.email)
+                _this.props.history.push('/')
             })
     }
 

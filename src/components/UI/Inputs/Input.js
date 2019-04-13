@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 
 const Input = props => {
     return (
@@ -12,6 +13,12 @@ const Input = props => {
             />
         </React.Fragment>
     )
+}
+
+Input.propTypes = {
+    type: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    placeholder: PropTypes.string,
 }
 
 export default Input

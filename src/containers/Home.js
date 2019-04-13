@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from 'react'
+import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import BlockList from './../components/ChildBlock/BlockList'
 import { success, error } from '../utils/utils'
@@ -11,12 +11,12 @@ import { setUser } from '../store/user/actions'
 
 class Home extends Component {
     state = {
-        loading: false,
-        validating: false,
-        url: '',
-        title: '',
-        topic: '',
-        user: null,
+            loading: false,
+            validating: false,
+            url: '',
+            title: '',
+            topic: '',
+            user: null,
     }
 
     hideLoader = () => {

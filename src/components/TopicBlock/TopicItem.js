@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import editIcon from '../../assets/images/edit.png'
 import removeIcon from '../../assets/images/remove.png'
@@ -37,6 +38,11 @@ const TopicItem = props => {
             </span>
         </p>
     )
+}
+
+TopicItem.propTypes = {
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
 }
 
 export default TopicItem

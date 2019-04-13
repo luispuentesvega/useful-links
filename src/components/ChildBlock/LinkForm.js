@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import Input from '../UI/Inputs/Input'
 import Button from '../UI/Buttons/Button'
 import Select from '../UI/Selects/Select'
@@ -45,8 +46,13 @@ const LinkForm = props => {
                         value={props.url}
                         onChange={props.onChangeInput}
                     />
-                    <InputError validating={props.validating} value={props.url} type="url">
-                        Must fill up the URL or it is incorrect, must include http
+                    <InputError
+                        validating={props.validating}
+                        value={props.url}
+                        type="url"
+                    >
+                        Must fill up the URL or it is incorrect, must include
+                        http
                     </InputError>
 
                     <Button buttonName={props.buttonName} type="submit" />
@@ -54,6 +60,27 @@ const LinkForm = props => {
             )}
         </div>
     )
+}
+
+const topicPropType = PropTypes.shape({
+    id: PropTypes.string,
+    name: PropTypes.string,
+})
+
+LinkForm.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    validating: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    topics: PropTypes.arrayOf(topicPropType),
+    topic: PropTypes.string.isRequired,
+    title: PropTypes.string.isRequired,
+    url: PropTypes.string.isRequired,
+    buttonName: PropTypes.string.isRequired,
+}
+
+LinkForm.defaultProps = {
+    loading: false,
+    validating: false,
 }
 
 export default LinkForm

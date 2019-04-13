@@ -3,20 +3,7 @@ import Spinner from '../ChildBlock/LinkForm'
 import Input from '../UI/Inputs/Input'
 import InputError from '../UI/InputError/InputError'
 import Button from '../UI/Buttons/Button'
-
-const buttonStyle = {
-    background: '#fff',
-    color: '#764ABC',
-}
-
-const registerStyle = {
-    fontSize: '1.5rem',
-}
-
-const buttonRegister = {
-    color: 'blue',
-    cursor: 'pointer',
-}
+import PropTypes from 'prop-types'
 
 const RegisterForm = props => {
     return (
@@ -58,6 +45,14 @@ const RegisterForm = props => {
             )}
         </div>
     )
+}
+
+RegisterForm.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    validating: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
 }
 
 export default RegisterForm

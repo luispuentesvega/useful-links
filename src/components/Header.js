@@ -1,7 +1,6 @@
 import React, { Fragment, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import BurgerMenu from '../components/UI/BurgerMenu/BurgerMenu'
-import withUser from '../hoc/withUser'
 import { connect } from 'react-redux'
 import { setUser } from '../store/user/actions'
 import fire from '../config/fire'
@@ -44,32 +43,36 @@ const Header = props => {
     return (
         <Fragment>
             <div className="header">
-                <BurgerMenu show={show} click={handleMenuIcon} />
-                {show && (
-                    <Fragment>
-                        <NavLink className="header__button" exact to="/">
-                            Home
-                        </NavLink>
-                        <NavLink className="header__button" to="/topics">
-                            Topics
-                        </NavLink>
-                        <NavLink className="header__button" to="/about">
-                            About
-                        </NavLink>
-                        {!isLoggedIn() ? (
-                            <NavLink className="header__button" to="/login">
-                                Login
+                <div className="header__items">
+                    <BurgerMenu show={show} click={handleMenuIcon} />
+                    {show && (
+                        <Fragment>
+                            <NavLink className="header__button" exact to="/">
+                                Home
                             </NavLink>
-                        ) : null}
-                    </Fragment>
-                )}
+                            <NavLink className="header__button" to="/topics">
+                                Topics
+                            </NavLink>
+                            <NavLink className="header__button" to="/about">
+                                About
+                            </NavLink>
+                            {!isLoggedIn() ? (
+                                <NavLink className="header__button" to="/login">
+                                    Login
+                                </NavLink>
+                            ) : null}
+                        </Fragment>
+                    )}
+                </div>
             </div>
             {isLoggedIn() ? (
                 <div style={divWelcome}>
                     {' '}
                     <span>Welcome! {props.user || ''}</span>
                     <span>
-                        <a onClick={logOut}>Logout</a>
+                        <a href="" onClick={logOut}>
+                            Logout
+                        </a>
                     </span>
                 </div>
             ) : null}

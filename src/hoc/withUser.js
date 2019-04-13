@@ -17,10 +17,6 @@ const withUser = WrappedComponent => {
             fire.auth().signOut()
         }
 
-        componentDidMount() {
-            console.log('withUser(', this.props.user, ')')
-        }
-
         render() {
             return (
                 <WrappedComponent

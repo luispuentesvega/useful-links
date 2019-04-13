@@ -1,4 +1,5 @@
 import React from 'react'
+import PropTypes from 'prop-types'
 import TopicItem from './TopicItem'
 import Spinner from '../../components/UI/Spinner/Spinner'
 
@@ -24,6 +25,17 @@ const TopicList = props => {
             </div>
         </div>
     )
+}
+
+const topicPropType = PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    name: PropTypes.string.isRequired,
+})
+
+TopicList.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    topics: PropTypes.arrayOf(topicPropType),
+    onDelete: PropTypes.func.isRequired,
 }
 
 export default TopicList

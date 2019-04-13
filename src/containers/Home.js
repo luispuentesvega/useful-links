@@ -11,7 +11,7 @@ import { setUser } from '../store/user/actions'
 
 class Home extends Component {
     state = {
-        loading: false,
+        loading: true,
         validating: false,
         url: '',
         title: '',

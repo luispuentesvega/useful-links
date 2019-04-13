@@ -2,6 +2,10 @@ import React, { Component } from 'react'
 
 const developers = [
     {
+        name: 'PracticeG',
+        url: 'https://github.com/PracticeG',
+    },
+    {
         name: 'Luis',
         url: 'http://luispuentes.me',
     },
@@ -30,9 +34,15 @@ class About extends Component {
                 </p>
                 <p>
                     Developed by : <br />
-                    {developers.map(developer => (
-                        <a href={developer.url}>{developer.name}</a>
-                    ))}
+                    {developers.map(developer => {
+                        return (
+                            <div key={developer.name}>
+                                <a target="_blank" href={developer.url}>
+                                    {developer.name}
+                                </a>
+                            </div>
+                        )
+                    })}
                 </p>
             </div>
         )

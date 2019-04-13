@@ -99,7 +99,7 @@ class LinkEdit extends Component {
 
     render() {
         return (
-            <Fragment>
+            <div className="container">
                 <LinkForm
                     onSubmit={this.onFormSubmit}
                     topic={this.state.topic}
@@ -119,7 +119,7 @@ class LinkEdit extends Component {
                         onClick={this.redirect}
                     />
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }

@@ -68,7 +68,7 @@ class TopicEdit extends Component {
         const { name, validating } = this.state
 
         return (
-            <Fragment>
+            <div className="container">
                 <TopicForm
                     onSubmit={this.onFormSubmit}
                     name={name}
@@ -84,7 +84,7 @@ class TopicEdit extends Component {
                         onClick={this.redirect}
                     />
                 </div>
-            </Fragment>
+            </div>
         )
     }
 }

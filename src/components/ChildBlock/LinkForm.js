@@ -6,9 +6,17 @@ import Select from '../UI/Selects/Select'
 import Spinner from '../UI/Spinner/Spinner'
 import InputError from '../UI/InputError/InputError'
 
+const loadingStyle = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+}
+
 const LinkForm = props => {
+    const ownStyle = props.loading ? loadingStyle : {}
+
     return (
-        <div className="child">
+        <div className="child" style={ownStyle}>
             {props.loading ? (
                 <Spinner />
             ) : (

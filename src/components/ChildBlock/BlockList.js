@@ -9,6 +9,7 @@ const BlockList = props => {
             {props.loading ? (
                 <Spinner />
             ) : (
+                props.links &&
                 props.topics &&
                 props.topics.map((topic, index) => {
                     const topicLinks = props.links.filter(

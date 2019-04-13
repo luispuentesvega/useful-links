@@ -4,6 +4,13 @@ import BurgerMenu from '../components/UI/BurgerMenu/BurgerMenu'
 import { connect } from 'react-redux'
 import { setUser } from '../store/user/actions'
 import fire from '../config/fire'
+import Menu from '../components/HeaderBlock/Menu'
+
+const divMainWelcome = {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+}
 
 const divWelcome = {
     background: '#764ABC',
@@ -13,6 +20,12 @@ const divWelcome = {
     textAlign: 'center',
     display: 'flex',
     justifyContent: 'space-between',
+    width: '100%',
+    maxWidth: '900px',
+}
+
+const logoutStyle = {
+    cursor: 'pointer',
 }
 
 const mapStateToProps = state => ({
@@ -37,7 +50,6 @@ const Header = props => {
     const logOut = () => {
         fire.auth().signOut()
         props.setUser(null)
-        //this.props.history.push('/')
     }
 
     return (
@@ -45,35 +57,28 @@ const Header = props => {
             <div className="header">
                 <div className="header__items">
                     <BurgerMenu show={show} click={handleMenuIcon} />
-                    {show && (
-                        <Fragment>
-                            <NavLink className="header__button" exact to="/">
-                                Home
-                            </NavLink>
-                            <NavLink className="header__button" to="/topics">
-                                Topics
-                            </NavLink>
-                            <NavLink className="header__button" to="/about">
-                                About
-                            </NavLink>
-                            {!isLoggedIn() ? (
-                                <NavLink className="header__button" to="/login">
-                                    Login
-                                </NavLink>
-                            ) : null}
-                        </Fragment>
-                    )}
+                    {show && <Menu isLoggedIn={isLoggedIn()} />}
+                </div>
+
+                <div className="header__pcitems">
+                    <Menu isLoggedIn={isLoggedIn()} />
                 </div>
             </div>
             {isLoggedIn() ? (
-                <div style={divWelcome}>
-                    {' '}
-                    <span>Welcome! {props.user || ''}</span>
-                    <span>
-                        <a href="" onClick={logOut}>
-                            Logout
-                        </a>
-                    </span>
+                <div style={divMainWelcome}>
+                    <div style={divWelcome}>
+                        {' '}
+                        <span>Welcome! {props.user || ''}</span>
+                        <span>
+                            <span
+                                className="logout"
+                                style={logoutStyle}
+                                onClick={logOut}
+                            >
+                                Logout
+                            </span>
+                        </span>
+                    </div>
                 </div>
             ) : null}
         </Fragment>

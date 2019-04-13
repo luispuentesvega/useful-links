@@ -11,12 +11,12 @@ import { setUser } from '../store/user/actions'
 
 class Home extends Component {
     state = {
-            loading: false,
-            validating: false,
-            url: '',
-            title: '',
-            topic: '',
-            user: null,
+        loading: false,
+        validating: false,
+        url: '',
+        title: '',
+        topic: '',
+        user: null,
     }
 
     hideLoader = () => {

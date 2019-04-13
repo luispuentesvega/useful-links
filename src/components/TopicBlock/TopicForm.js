@@ -1,6 +1,7 @@
 import React from 'react'
 import Input from '../UI/Inputs/Input'
 import Button from '../UI/Buttons/Button'
+import PropTypes from 'prop-types'
 
 const TopicForm = props => {
     return (
@@ -20,6 +21,13 @@ const TopicForm = props => {
             </form>
         </div>
     )
+}
+
+TopicForm.propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+    name: PropTypes.string.isRequired,
+    validating: PropTypes.bool.isRequired,
+    buttonName: PropTypes.string.isRequired,
 }
 
 export default TopicForm

@@ -3,6 +3,7 @@ import Spinner from '../ChildBlock/LinkForm'
 import Input from '../UI/Inputs/Input'
 import InputError from '../UI/InputError/InputError'
 import Button from '../UI/Buttons/Button'
+import PropTypes from 'prop-types'
 
 const buttonStyle = {
     background: '#fff',
@@ -67,6 +68,7 @@ const LoginForm = props => {
                         <span>
                             Don't have an account{' '}
                             <a
+                                href=""
                                 style={buttonRegister}
                                 onClick={props.onRegister}
                             >
@@ -78,6 +80,20 @@ const LoginForm = props => {
             )}
         </div>
     )
+}
+
+LoginForm.propTypes = {
+    loading: PropTypes.bool.isRequired,
+    validating: PropTypes.bool.isRequired,
+    onSubmit: PropTypes.func.isRequired,
+    email: PropTypes.string.isRequired,
+    password: PropTypes.string.isRequired,
+    onGmailLogin: PropTypes.func.isRequired,
+    onRegister: PropTypes.func.isRequired,
+}
+
+LoginForm.defaultProps = {
+    loading: true,
 }
 
 export default LoginForm

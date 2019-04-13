@@ -46,10 +46,7 @@ class Login extends Component {
             .auth()
             .signInWithPopup(provider)
             .then(function(result) {
-                // This gives you a Google Access Token.
-                var token = result.credential.accessToken
-                // The signed-in user info.
-                var user = result.user
+                const user = result.user
                 localStorage.setItem('user', user.email)
                 _this.props.setUser(user.email)
                 _this.props.history.push('/')

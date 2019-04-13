@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import fire from '../config/fire'
-import firebase from 'firebase'
 import { connect } from 'react-redux'
-import withUser from '../hoc/withUser'
 import * as util from '../utils/utils'
 import { setUser } from '../store/user/actions'
 import RegisterForm from '../components/RegisterBlock/RegisterForm'
@@ -28,7 +26,6 @@ class Register extends Component {
                 this.state.password,
             )
             .then(res => {
-                console.log('u::::::', res.user.email)
                 this.props.setUser(res.user.email)
                 this.props.history.push('/')
             })

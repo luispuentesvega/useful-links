@@ -36,14 +36,14 @@ export const listLinks = () => {
                 .then(res => {
                     let links = []
                     if (res.data != null) {
-                        Object.keys(res.data).map(idx => {
+                        Object.keys(res.data).map(idx =>
                             links.push({
                                 id: idx,
                                 topic: res.data[idx].topic,
                                 title: res.data[idx].title,
                                 url: res.data[idx].url,
-                            })
-                        })
+                            }),
+                        )
                     }
                     dispatch(listLinksSuccess(links))
                     resolve()

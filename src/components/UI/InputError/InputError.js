@@ -1,4 +1,5 @@
 import React, { Fragment } from 'react'
+import PropTypes from 'prop-types'
 import * as util from '../../../utils/utils'
 
 const InputError = props => {
@@ -18,6 +19,11 @@ const InputError = props => {
             ) : null}
         </Fragment>
     )
+}
+
+InputError.propTypes = {
+    validating: PropTypes.bool,
+    children: PropTypes.node.isRequired,
 }
 
 export default InputError

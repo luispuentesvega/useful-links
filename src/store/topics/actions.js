@@ -42,12 +42,12 @@ export const listTopics = () => {
                 .then(res => {
                     let topics = []
                     if (res.data != null) {
-                        Object.keys(res.data).map(idx => {
+                        Object.keys(res.data).map(idx =>
                             topics.push({
                                 id: idx,
                                 name: res.data[idx].name,
-                            })
-                        })
+                            }),
+                        )
                     }
                     dispatch(listTopicSuccess(topics))
                     resolve()

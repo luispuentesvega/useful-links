@@ -14,6 +14,7 @@ const developers = [
 const containerStyle = {
     fontSize: '2rem',
     textAlign: 'center',
+    padding: '0 2rem',
 }
 
 const titleStyle = {
@@ -32,18 +33,18 @@ class About extends Component {
                     If you want to have your own links, you should register or
                     login using Gmail
                 </p>
-                <p>
+                <div>
                     Developed by : <br />
                     {developers.map(developer => {
                         return (
-                            <div key={developer.name}>
+                            <div key={developer.name + 1}>
                                 <a target="_blank" href={developer.url}>
                                     {developer.name}
                                 </a>
                             </div>
                         )
                     })}
-                </p>
+                </div>
             </div>
         )
     }

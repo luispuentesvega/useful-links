@@ -12,6 +12,7 @@
     "eslint-plugin-prettier": "^3.0.1",
     "firebase": "^5.9.3",
     "gh-pages": "^2.0.1",
+    "nock": "^10.0.6",
     "node-sass": "^4.11.0",
     "normalize.css": "^8.0.1",
     "prop-types": "^15.7.2",
@@ -32,7 +33,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build"

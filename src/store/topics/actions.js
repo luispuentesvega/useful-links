@@ -42,15 +42,14 @@ export const listTopics = () => {
                 .then(res => {
                     let topics = []
                     if (res.data != null) {
-                        Object.keys(res.data).map(idx =>
+                        Object.keys(res.data).map(idx => {
                             topics.push({
                                 id: idx,
                                 name: res.data[idx].name,
-                            }),
-                        )
+                            })
+                        })
                     }
-                    dispatch(listTopicSuccess(topics))
-                    resolve()
+                    resolve(dispatch(listTopicSuccess(topics)))
                 })
                 .catch(err => {
                     reject()
@@ -97,8 +96,7 @@ export const deleteTopic = id => {
             axios
                 .delete(`topics/${id}.json`)
                 .then(() => {
-                    dispatch(listTopics())
-                    resolve()
+                    resolve(dispatch(listTopics()))
                 })
                 .catch(err => {
                     console.log('err:', err)

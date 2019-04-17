@@ -3,21 +3,21 @@ import PropTypes from 'prop-types'
 import TopicItem from './TopicItem'
 import Spinner from '../../components/UI/Spinner/Spinner'
 
-const TopicList = props => {
+const TopicList = ({ isLoading, topics, onDelete }) => {
     return (
         <div className="child">
             <h1 className="child__title">LIST</h1>
             <div className="caption">
-                {props.loading ? (
+                {isLoading ? (
                     <Spinner />
                 ) : (
-                    Object.values(props.topics).map((topic, idx) => {
+                    Object.values(topics).map((topic, idx) => {
                         return (
                             <TopicItem
                                 key={idx}
                                 id={topic.id}
                                 name={topic.name}
-                                onDelete={props.onDelete}
+                                onDelete={onDelete}
                             />
                         )
                     })
@@ -33,7 +33,7 @@ const topicPropType = PropTypes.shape({
 })
 
 TopicList.propTypes = {
-    loading: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
     topics: PropTypes.arrayOf(topicPropType),
     onDelete: PropTypes.func.isRequired,
 }

@@ -3,16 +3,16 @@ import Proptypes from 'prop-types'
 import TopicItem from './TopicItem'
 import Spinner from '../UI/Spinner/Spinner'
 
-const BlockList = props => {
+const BlockList = ({ isLoading, links, topics, onDelete }) => {
     return (
         <Fragment>
-            {props.loading ? (
+            {isLoading ? (
                 <Spinner />
             ) : (
-                props.links &&
-                props.topics &&
-                props.topics.map((topic, index) => {
-                    const topicLinks = props.links.filter(
+                links &&
+                topics &&
+                topics.map((topic, index) => {
+                    const topicLinks = links.filter(
                         link => link.topic === topic.id,
                     )
                     return (
@@ -20,7 +20,7 @@ const BlockList = props => {
                             key={index}
                             topic={topic}
                             links={topicLinks}
-                            onDelete={props.onDelete}
+                            onDelete={onDelete}
                         />
                     )
                 })
@@ -30,7 +30,7 @@ const BlockList = props => {
 }
 
 BlockList.propTypes = {
-    loading: Proptypes.bool.isRequired,
+    isLoading: Proptypes.bool.isRequired,
     topics: Proptypes.arrayOf(
         Proptypes.shape({
             id: Proptypes.string.isRequired,

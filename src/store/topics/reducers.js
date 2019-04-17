@@ -9,12 +9,12 @@ const defaultState = {
 const TopicReducer = (state = defaultState, action) => {
     switch (action.type) {
         case 'ADD_TOPIC':
-            return [
+            return {
                 ...state,
-                {
+                topics: state.topics.concat({
                     name: action.data.name,
-                },
-            ]
+                }),
+            }
         case 'LIST_TOPICS':
             return {
                 ...state,

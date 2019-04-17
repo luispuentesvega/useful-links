@@ -22,7 +22,7 @@ const buttonRegister = {
 const LoginForm = props => {
     return (
         <div className="child">
-            {props.loading ? (
+            {props.isLoading ? (
                 <Spinner />
             ) : (
                 <form onSubmit={props.onSubmit}>
@@ -35,7 +35,7 @@ const LoginForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.email}
                     >
                         Must fill up the email
@@ -48,7 +48,7 @@ const LoginForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.password}
                     >
                         Must fill up the password
@@ -83,8 +83,8 @@ const LoginForm = props => {
 }
 
 LoginForm.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    validating: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    isValidating: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,
@@ -93,7 +93,7 @@ LoginForm.propTypes = {
 }
 
 LoginForm.defaultProps = {
-    loading: true,
+    isLoading: true,
 }
 
 export default LoginForm

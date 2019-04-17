@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import PropTypes from 'prop-types'
 import { NavLink } from 'react-router-dom'
 
-const Menu = props => {
+const Menu = ({ isLoggedIn }) => {
     return (
         <Fragment>
             <NavLink className="header__button" exact to="/">
@@ -14,7 +14,7 @@ const Menu = props => {
             <NavLink className="header__button" to="/about">
                 About
             </NavLink>
-            {!props.isLoggedIn ? (
+            {!isLoggedIn ? (
                 <NavLink className="header__button" to="/login">
                     Login
                 </NavLink>

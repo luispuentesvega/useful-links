@@ -14,8 +14,8 @@ const divStyle = {
 
 class LinkEdit extends Component {
     state = {
-        loading: false,
-        validating: false,
+        isLoading: false,
+        isValidating: false,
         url: '',
         title: '',
         topic: '',
@@ -53,7 +53,7 @@ class LinkEdit extends Component {
     }
 
     isValidTheForm = () => {
-        this.setState({ validating: true })
+        this.setState({ isValidating: true })
         if (!this.state.title) {
             return false
         }
@@ -108,8 +108,8 @@ class LinkEdit extends Component {
                     topics={this.props.topicsOpts}
                     onChangeInput={this.onChangeInput}
                     buttonName="EDIT"
-                    validating={this.state.validating}
-                    loading={this.state.loading}
+                    isValidating={this.state.isValidating}
+                    isLoading={this.state.isLoading}
                 />
                 <div style={divStyle}>
                     <Button

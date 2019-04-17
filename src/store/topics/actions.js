@@ -49,6 +49,7 @@ export const listTopics = () => {
                             })
                         })
                     }
+                    console.log('TOPICS:', topics)
                     resolve(dispatch(listTopicSuccess(topics)))
                 })
                 .catch(err => {

@@ -7,8 +7,8 @@ import RegisterForm from '../components/RegisterBlock/RegisterForm'
 
 class Register extends Component {
     state = {
-        loading: false,
-        validating: false,
+        isLoading: false,
+        isValidating: false,
         email: '',
         password: '',
     }
@@ -44,10 +44,10 @@ class Register extends Component {
                     <RegisterForm
                         onSubmit={this.onSubmit}
                         onChangeInput={this.onChangeInput}
-                        loading={this.state.loading}
+                        isLoading={this.state.isLoading}
                         email={this.state.email}
                         password={this.state.password}
-                        validating={this.state.validating}
+                        isValidating={this.state.isValidating}
                     />
                 )}
             </div>

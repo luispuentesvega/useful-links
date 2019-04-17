@@ -14,7 +14,7 @@ class TopicEdit extends Component {
     state = {
         id: '',
         name: '',
-        validating: false,
+        isValidating: false,
     }
 
     onFormSubmit = e => {
@@ -44,7 +44,7 @@ class TopicEdit extends Component {
     }
 
     isValidTheForm = () => {
-        this.setState({ validating: true })
+        this.setState({ isValidating: true })
         return this.state.name
     }
 
@@ -65,7 +65,7 @@ class TopicEdit extends Component {
     }
 
     render() {
-        const { name, validating } = this.state
+        const { name, isValidating } = this.state
 
         return (
             <div className="container">
@@ -74,7 +74,7 @@ class TopicEdit extends Component {
                     name={name}
                     onChangeNameInput={this.onChangeNameInput}
                     buttonName="EDIT"
-                    validating={validating}
+                    isValidating={isValidating}
                 />
                 <div style={divStyle}>
                     <Button

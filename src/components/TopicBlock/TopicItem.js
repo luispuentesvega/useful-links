@@ -5,15 +5,15 @@ import editIcon from '../../assets/images/edit.png'
 import removeIcon from '../../assets/images/remove.png'
 import { confirmAlert } from 'react-confirm-alert'
 
-const TopicItem = props => {
+const TopicItem = ({ id, name, onDelete }) => {
     const deleteTopic = () => {
         confirmAlert({
             title: 'Confirm to delete',
-            message: `Are you sure that you want to delete ${props.name} ?`,
+            message: `Are you sure that you want to delete ${name} ?`,
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => props.onDelete(props.id),
+                    onClick: () => onDelete(id),
                 },
                 {
                     label: 'No',
@@ -24,10 +24,10 @@ const TopicItem = props => {
     }
 
     return (
-        <p key={props.id} className="topic">
-            <span className="topic__title">{props.name}</span>
+        <p key={id} className="topic">
+            <span className="topic__title">{name}</span>
             <span className="topic__icons">
-                <Link to={'/topics/' + props.id}>
+                <Link to={'/topics/' + id}>
                     <img src={editIcon} alt="edit" />
                 </Link>
                 <img
@@ -43,6 +43,7 @@ const TopicItem = props => {
 TopicItem.propTypes = {
     id: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    onDelete: PropTypes.func.isRequired,
 }
 
 export default TopicItem

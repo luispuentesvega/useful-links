@@ -10,8 +10,8 @@ import firebase from 'firebase'
 
 class Login extends Component {
     state = {
-        loading: false,
-        validating: false,
+        isLoading: false,
+        isValidating: false,
         email: '',
         password: '',
     }
@@ -68,10 +68,10 @@ class Login extends Component {
                         onRegister={this.onRegister}
                         onChangeInput={this.onChangeInput}
                         onGmailLogin={this.onGmailLogin}
-                        loading={this.state.loading}
+                        isLoading={this.state.isLoading}
                         email={this.state.email}
                         password={this.state.password}
-                        validating={this.state.validating}
+                        isValidating={this.state.isValidating}
                     />
                 )}
             </div>

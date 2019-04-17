@@ -8,7 +8,7 @@ import PropTypes from 'prop-types'
 const RegisterForm = props => {
     return (
         <div className="child">
-            {props.loading ? (
+            {props.isLoading ? (
                 <Spinner />
             ) : (
                 <form onSubmit={props.onSubmit}>
@@ -21,7 +21,7 @@ const RegisterForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.email}
                     >
                         Must fill up the email
@@ -34,7 +34,7 @@ const RegisterForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.password}
                     >
                         Must fill up the password
@@ -48,8 +48,8 @@ const RegisterForm = props => {
 }
 
 RegisterForm.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    validating: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    isValidating: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
     email: PropTypes.string.isRequired,
     password: PropTypes.string.isRequired,

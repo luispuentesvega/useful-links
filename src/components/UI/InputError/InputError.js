@@ -14,7 +14,7 @@ const InputError = props => {
 
     return (
         <Fragment>
-            {props.validating && (props.value === '' || customValidation()) ? (
+            {props.isValidating && (props.value === '' || customValidation()) ? (
                 <div className="error">{props.children}</div>
             ) : null}
         </Fragment>
@@ -22,7 +22,7 @@ const InputError = props => {
 }
 
 InputError.propTypes = {
-    validating: PropTypes.bool,
+    isValidating: PropTypes.bool,
     children: PropTypes.node.isRequired,
 }
 

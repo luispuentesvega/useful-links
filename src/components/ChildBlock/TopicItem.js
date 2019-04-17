@@ -5,7 +5,7 @@ import removeIcon from '../../assets/images/remove.png'
 import { confirmAlert } from 'react-confirm-alert'
 import { Link } from 'react-router-dom'
 
-const TopicItem = props => {
+const TopicItem = ({ link, topic, onDelete }) => {
     const deleteTopic = (id, title) => {
         confirmAlert({
             title: 'Confirm to delete',
@@ -13,7 +13,7 @@ const TopicItem = props => {
             buttons: [
                 {
                     label: 'Yes',
-                    onClick: () => props.onDelete(id),
+                    onClick: () => onDelete(id),
                 },
                 {
                     label: 'No',
@@ -24,8 +24,8 @@ const TopicItem = props => {
     }
     const TopicLinks = () => {
         let out = []
-        props.links &&
-            props.links.map(link =>
+        links &&
+            links.map(link =>
                 out.push(
                     <p key={link.title} className="link">
                         <span className="link__title">
@@ -59,7 +59,7 @@ const TopicItem = props => {
         <Fragment>
             {links.length > 0 ? (
                 <div className="child">
-                    <h1 className="child__title">{props.topic.name}</h1>
+                    <h1 className="child__title">{topic.name}</h1>
                     <div className="caption">{links}</div>
                 </div>
             ) : null}

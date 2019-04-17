@@ -2,9 +2,6 @@ import React from 'react'
 import PropTypes from 'prop-types'
 
 const Button = props => {
-
-    console.log('BUTTON:::', props)
-
     const { buttonName, ...rest } = props
     return (
         <React.Fragment>

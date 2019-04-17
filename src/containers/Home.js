@@ -11,8 +11,8 @@ import { setUser } from '../store/user/actions'
 
 class Home extends Component {
     state = {
-        loading: true,
-        validating: false,
+        isLoading: true,
+        isValidating: false,
         url: '',
         title: '',
         topic: '',
@@ -20,11 +20,11 @@ class Home extends Component {
     }
 
     hideLoader = () => {
-        this.setState({ loading: false })
+        this.setState({ isLoading: false })
     }
 
     showLoader = () => {
-        this.setState({ loading: true })
+        this.setState({ isLoading: true })
     }
 
     onChangeInput = e => {
@@ -32,7 +32,7 @@ class Home extends Component {
     }
 
     isValidTheForm = () => {
-        this.setState({ validating: true })
+        this.setState({ isValidating: true })
         if (!this.state.title) {
             return false
         }
@@ -59,7 +59,7 @@ class Home extends Component {
             .add(this.state.topic, this.state.title, this.state.url)
             .then(() => {
                 this.setState({
-                    validating: false,
+                    isValidating: false,
                     topic: '',
                     title: '',
                     url: '',
@@ -85,7 +85,7 @@ class Home extends Component {
     }
 
     componentDidMount() {
-        this.setState({ loading: true })
+        this.setState({ isLoading: true })
         this.props
             .listTopics()
             .then(() => {})
@@ -96,7 +96,7 @@ class Home extends Component {
         this.props
             .listLinks()
             .then(() => {
-                this.setState({ loading: false })
+                this.setState({ isLoading: false })
             })
             .catch(err => {
                 console.log('err:', err)
@@ -128,13 +128,13 @@ class Home extends Component {
                     topics={this.props.topicsOpts}
                     onChangeInput={this.onChangeInput}
                     buttonName="CREATE"
-                    validating={this.state.validating}
-                    loading={this.state.loading}
+                    isValidating={this.state.isValidating}
+                    isLoading={this.state.isLoading}
                 />
                 <BlockList
                     topics={this.props.topicsOpts}
                     links={this.props.links}
-                    loading={this.state.loading}
+                    isLoading={this.state.isLoading}
                     onDelete={this.onDelete}
                 />
             </div>

@@ -3,21 +3,27 @@ import Input from '../UI/Inputs/Input'
 import Button from '../UI/Buttons/Button'
 import PropTypes from 'prop-types'
 
-const TopicForm = props => {
+const TopicForm = ({
+    onSubmit,
+    name,
+    onChangeNameInput,
+    isValidating,
+    buttonName,
+}) => {
     return (
         <div className="child">
-            <form onSubmit={props.onSubmit}>
+            <form onSubmit={onSubmit}>
                 <h1>Topics</h1>
                 <Input
                     type="text"
                     placeholder="Name"
-                    value={props.name}
-                    onChange={props.onChangeNameInput}
+                    value={name}
+                    onChange={onChangeNameInput}
                 />
-                {props.validating && props.name === '' ? (
+                {isValidating && name === '' ? (
                     <div className="error">Must fill up the name</div>
                 ) : null}
-                <Button buttonName={props.buttonName} type="submit" />
+                <Button buttonName={buttonName} type="submit" />
             </form>
         </div>
     )
@@ -26,8 +32,9 @@ const TopicForm = props => {
 TopicForm.propTypes = {
     onSubmit: PropTypes.func.isRequired,
     name: PropTypes.string.isRequired,
-    validating: PropTypes.bool.isRequired,
+    isValidating: PropTypes.bool.isRequired,
     buttonName: PropTypes.string.isRequired,
+    onChangeNameInput: PropTypes.func.isRequired,
 }
 
 export default TopicForm

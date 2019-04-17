@@ -8,16 +8,16 @@ import { success, error } from '../utils/utils'
 class Topics extends Component {
     state = {
         name: '',
-        validating: false,
-        loading: false,
+        isValidating: false,
+        isLoading: false,
     }
 
     hideLoader = () => {
-        this.setState({ loading: false })
+        this.setState({ isLoading: false })
     }
 
     showLoader = () => {
-        this.setState({ loading: true })
+        this.setState({ isLoading: true })
     }
 
     onFormSubmit = e => {
@@ -29,7 +29,7 @@ class Topics extends Component {
             .add(this.state.name)
             .then(() => {
                 this.setState({
-                    validating: false,
+                    isValidating: false,
                     name: '',
                 })
                 success('Created successfully!')
@@ -51,7 +51,7 @@ class Topics extends Component {
     }
 
     isValidTheForm = () => {
-        this.setState({ validating: true })
+        this.setState({ isValidating: true })
         return this.state.name.trim() !== ''
     }
 
@@ -79,7 +79,7 @@ class Topics extends Component {
 
     render() {
         const { topics } = this.props
-        const { name, validating } = this.state
+        const { name, isValidating } = this.state
 
         return (
             <div className="container">
@@ -88,12 +88,12 @@ class Topics extends Component {
                     name={name}
                     onChangeNameInput={this.onChangeNameInput}
                     buttonName="CREATE"
-                    validating={validating}
+                    isValidating={isValidating}
                 />
                 <TopicList
                     topics={topics}
                     onDelete={this.onDelete}
-                    loading={this.state.loading}
+                    isLoading={this.state.isLoading}
                 />
             </div>
         )

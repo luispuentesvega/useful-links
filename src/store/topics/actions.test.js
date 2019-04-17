@@ -18,14 +18,16 @@ describe('topics > actions', () => {
         nock.cleanAll()
     })
 
-    const response = getMockTopicList()
+    beforeEach(() => {
+        nock(LIST_API)
+            .defaultReplyHeaders({
+                'content-type': 'application/json',
+            })
+            .get('/topics.json')
+            .reply(200, response)
+    })
 
-    nock(LIST_API)
-        .defaultReplyHeaders({
-            'content-type': 'application/json',
-        })
-        .get('/topics.json')
-        .reply(200, response)
+    const response = getMockTopicList()
 
     it('listTopics()', () => {
         const expectedActions = [
@@ -39,9 +41,37 @@ describe('topics > actions', () => {
                 ],
             },
         ]
-        const store = mockStore({ topics: [] })
+        let state = { topics: [] }
+        const store = mockStore(() => state)
 
         return store.dispatch(actions.listTopics()).then(() => {
+            expect(store.getActions()).toEqual(expectedActions)
+        })
+    })
+
+    it('deleteTopic()', () => {
+        const response = JSON.parse('{"-LbgG2V1S0fBxqp7JMMj":{"name":"PHP"}}')
+        const id = '-LbgG2V1S0fBxqp7JMMj'
+
+        nock(LIST_API)
+            .log(console.log)
+            .delete(`/topics/${id}.json`)
+            .reply(200, response)
+
+        const expectedActions = [
+            {
+                type: types.LIST_TOPICS,
+                data: [
+                    {
+                        id: '-LbgG2V1S0fBxqp7JMMj',
+                        name: 'PHP',
+                    },
+                ],
+            },
+        ]
+        const store = mockStore({ topics: [] })
+
+        return store.dispatch(actions.deleteTopic(id)).then(() => {
             expect(store.getActions()).toEqual(expectedActions)
         })
     })

@@ -13,11 +13,11 @@ const loadingStyle = {
 }
 
 const LinkForm = props => {
-    const ownStyle = props.loading ? loadingStyle : {}
+    const ownStyle = props.isLoading ? loadingStyle : {}
 
     return (
         <div className="child" style={ownStyle}>
-            {props.loading ? (
+            {props.isLoading ? (
                 <Spinner />
             ) : (
                 <form onSubmit={props.onSubmit}>
@@ -29,7 +29,7 @@ const LinkForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.topic}
                     >
                         Must select one topic
@@ -42,7 +42,7 @@ const LinkForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.title}
                     >
                         Must fill up the Title
@@ -55,7 +55,7 @@ const LinkForm = props => {
                         onChange={props.onChangeInput}
                     />
                     <InputError
-                        validating={props.validating}
+                        isValidating={props.isValidating}
                         value={props.url}
                         type="url"
                     >
@@ -76,8 +76,8 @@ const topicPropType = PropTypes.shape({
 })
 
 LinkForm.propTypes = {
-    loading: PropTypes.bool.isRequired,
-    validating: PropTypes.bool.isRequired,
+    isLoading: PropTypes.bool.isRequired,
+    isValidating: PropTypes.bool.isRequired,
     onSubmit: PropTypes.func.isRequired,
     topics: PropTypes.arrayOf(topicPropType),
     topic: PropTypes.string.isRequired,
@@ -87,8 +87,8 @@ LinkForm.propTypes = {
 }
 
 LinkForm.defaultProps = {
-    loading: false,
-    validating: false,
+    isLoading: false,
+    isValidating: false,
 }
 
 export default LinkForm

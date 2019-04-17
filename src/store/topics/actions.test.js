@@ -54,7 +54,6 @@ describe('topics > actions', () => {
         const id = '-LbgG2V1S0fBxqp7JMMj'
 
         nock(LIST_API)
-            .log(console.log)
             .delete(`/topics/${id}.json`)
             .reply(200, response)
 

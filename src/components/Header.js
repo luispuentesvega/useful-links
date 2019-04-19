@@ -5,6 +5,8 @@ import { connect } from 'react-redux'
 import { setUser } from '../store/user/actions'
 import fire from '../config/fire'
 import Menu from '../components/HeaderBlock/Menu'
+import { listTopics } from '../store/topics/actions'
+import { listLinks } from '../store/links/actions'
 
 const divMainWelcome = {
     display: 'flex',
@@ -34,6 +36,8 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     setUser: user => dispatch(setUser()),
+    listTopics: () => dispatch(listTopics()),
+    listLinks: () => dispatch(listLinks()),
 })
 
 const Header = props => {
@@ -48,8 +52,15 @@ const Header = props => {
     }
 
     const logOut = () => {
-        fire.auth().signOut()
-        props.setUser(null)
+        let _props = props
+        fire.auth()
+            .signOut()
+            .then(() => {
+                localStorage.removeItem('user')
+                localStorage.removeItem('uid')
+                _props.setUser(null)
+                _props.listTopics()
+            })
     }
 
     return (

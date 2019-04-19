@@ -1,11 +1,12 @@
 import * as actionTypes from './constants'
 import axios from '../../axios-links'
+import { getUrl } from '../../utils/utils'
 
 export const addTopic = name => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .post('topics.json', {
+                .post(getUrl() + 'topics.json', {
                     name: name,
                 })
                 .then(() => {
@@ -38,7 +39,7 @@ export const listTopics = () => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .get('topics.json')
+                .get(getUrl() + 'topics.json')
                 .then(res => {
                     let topics = []
                     if (res.data != null) {
@@ -70,7 +71,7 @@ export const editTopic = id => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .get(`topics/` + id + `.json`)
+                .get(getUrl() + `topics/` + id + `.json`)
                 .then(res => {
                     dispatch(editTopicSuccess(res.data))
                     resolve()
@@ -94,7 +95,7 @@ export const deleteTopic = id => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .delete(`topics/${id}.json`)
+                .delete(getUrl() + `topics/${id}.json`)
                 .then(() => {
                     resolve(dispatch(listTopics()))
                 })
@@ -110,7 +111,7 @@ export const updateTopic = (id, name) => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .put(`topics/${id}.json`, {
+                .put(getUrl() + `topics/${id}.json`, {
                     name: name,
                 })
                 .then(() => {

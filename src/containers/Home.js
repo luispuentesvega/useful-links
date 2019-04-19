@@ -86,34 +86,42 @@ class Home extends Component {
 
     componentDidMount() {
         this.setState({ isLoading: true })
-        this.props
-            .listTopics()
-            .then(() => {})
-            .catch(err => {
-                console.log('err:', err)
-            })
 
-        this.props
-            .listLinks()
-            .then(() => {
-                this.setState({ isLoading: false })
-            })
-            .catch(err => {
-                console.log('err:', err)
-            })
+        this.authListener().then(() => {
+            this.props
+                .listTopics()
+                .then(() => {})
+                .catch(err => {
+                    console.log('err:', err)
+                })
 
-        this.authListener()
+            this.props
+                .listLinks()
+                .then(() => {
+                    this.setState({ isLoading: false })
+                })
+                .catch(err => {
+                    console.log('err:', err)
+                })
+        })
     }
 
     authListener() {
-        fire.auth().onAuthStateChanged(user => {
-            if (user) {
-                localStorage.setItem('user', user.email)
-                this.props.setUser(user.email)
-            } else {
-                this.setState({ user: null })
-                localStorage.removeItem('user')
-            }
+        let _this = this
+        return new Promise(function(resolve, reject) {
+            fire.auth().onAuthStateChanged(user => {
+                console.log('user:::', user)
+                if (user) {
+                    localStorage.setItem('user', user.email)
+                    localStorage.setItem('uid', user.uid)
+                    _this.props.setUser(user.email)
+                } else {
+                    _this.setState({ user: null })
+                    localStorage.removeItem('user')
+                    localStorage.removeItem('uid')
+                }
+                resolve()
+            })
         })
     }
 

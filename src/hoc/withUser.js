@@ -2,6 +2,9 @@ import React from 'react'
 import { connect } from 'react-redux'
 import fire from '../config/fire'
 import { compose } from 'redux'
+import { addLink, deleteLink, listLinks } from '../store/links/actions'
+import { listTopics } from '../store/topics/actions'
+import { setUser } from '../store/user/actions'
 
 const mapStateToProps = state => ({
     user: state.user.user,
@@ -14,7 +17,7 @@ const withUser = WrappedComponent => {
         }
 
         logout = () => {
-            fire.auth().signOut()
+
         }
 
         render() {
@@ -31,10 +34,17 @@ const withUser = WrappedComponent => {
     return WithUser
 }
 
+const mapDispatchToProps = dispatch => {
+    return {
+        listTopics: () => dispatch(listTopics()),
+        listLinks: () => dispatch(listLinks()),
+    }
+}
+
 const composedWithUser = compose(
     connect(
         mapStateToProps,
-        null,
+        mapDispatchToProps,
     ),
     withUser,
 )

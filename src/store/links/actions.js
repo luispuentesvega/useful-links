@@ -1,11 +1,12 @@
 import * as actionTypes from './constants'
 import axios from '../../axios-links'
+import { getUrl } from '../../utils/utils'
 
 export const addLink = (topic, title, url) => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .post('links.json', {
+                .post(getUrl() + 'links.json', {
                     topic: topic,
                     title: title,
                     url: url,
@@ -32,7 +33,7 @@ export const listLinks = () => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .get('links.json')
+                .get(getUrl() + 'links.json')
                 .then(res => {
                     let links = []
                     if (res.data != null) {
@@ -67,7 +68,7 @@ export const deleteLink = id => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .delete(`links/${id}.json`)
+                .delete(getUrl() + `links/${id}.json`)
                 .then(() => {
                     dispatch(listLinks())
                     resolve()
@@ -84,7 +85,7 @@ export const editLink = id => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .get(`links/` + id + `.json`)
+                .get(getUrl() + `links/` + id + `.json`)
                 .then(res => {
                     dispatch(editLinkSuccess(res.data))
                     resolve()
@@ -108,7 +109,7 @@ export const updateLink = (id, topic, title, url) => {
     return dispatch => {
         return new Promise(function(resolve, reject) {
             axios
-                .put(`links/${id}.json`, {
+                .put(getUrl() + `links/${id}.json`, {
                     topic: topic,
                     title: title,
                     url: url,

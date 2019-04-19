@@ -48,6 +48,7 @@ class Login extends Component {
             .then(function(result) {
                 const user = result.user
                 localStorage.setItem('user', user.email)
+                localStorage.setItem('uid', user.uid)
                 _this.props.setUser(user.email)
                 _this.props.history.push('/')
             })

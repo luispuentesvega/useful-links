@@ -5,7 +5,7 @@ import removeIcon from '../../assets/images/remove.png'
 import { confirmAlert } from 'react-confirm-alert'
 import { Link } from 'react-router-dom'
 
-const TopicItem = ({ link, topic, onDelete }) => {
+const TopicItem = ({ links, topic, onDelete }) => {
     const deleteTopic = (id, title) => {
         confirmAlert({
             title: 'Confirm to delete',
@@ -53,14 +53,14 @@ const TopicItem = ({ link, topic, onDelete }) => {
         return out
     }
 
-    const links = TopicLinks()
+    const outLinks = TopicLinks()
 
     return (
         <Fragment>
-            {links.length > 0 ? (
+            {outLinks.length > 0 ? (
                 <div className="child">
                     <h1 className="child__title">{topic.name}</h1>
-                    <div className="caption">{links}</div>
+                    <div className="caption">{outLinks}</div>
                 </div>
             ) : null}
         </Fragment>

@@ -2,12 +2,19 @@ import Select from './Select'
 import { shallow } from 'enzyme'
 
 describe('<Select/>', () => {
-    it('should render without crashing', function() {
+    let wrapper
+    beforeEach(() => {
         const options = [{ id: 1, name: 'PHP' }]
-        const wrapper = shallow(
+        wrapper = shallow(
             <Select default="0" name="topics" options={options} />,
         )
+    })
+
+    it('should render without crashing', function() {
         expect(wrapper.find({ name: 'topics' }).length).toBe(1)
-      expect(wrapper.find('option').length).toBe(2)
+    })
+
+    it('should render 2 options', function() {
+        expect(wrapper.find('option').length).toBe(2)
     })
 })

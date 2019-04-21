@@ -17,36 +17,13 @@ const AppRouter = () => {
         <BrowserRouter basename={process.env.PUBLIC_URL}>
             <Header />
             <Switch>
-                <Route
-                    exact
-                    path={`${process.env.PUBLIC_URL}/`}
-                    component={Home}
-                />
-                <Route
-                    exact
-                    path={`${process.env.PUBLIC_URL}/topics/`}
-                    component={Topics}
-                />
-                <Route
-                    path={`${process.env.PUBLIC_URL}/topics/:id`}
-                    component={TopicEdit}
-                />
-                <Route
-                    path={`${process.env.PUBLIC_URL}/link/:id`}
-                    component={LinkEdit}
-                />
-                <Route
-                    path={`${process.env.PUBLIC_URL}/about`}
-                    component={About}
-                />
-                <Route
-                    path={`${process.env.PUBLIC_URL}/login`}
-                    component={Login}
-                />
-                <Route
-                    path={`${process.env.PUBLIC_URL}/register`}
-                    component={Register}
-                />
+                <Route exact path="/" component={Home} />
+                <Route exact path="/topics/" component={Topics} />
+                <Route path="/topics/:id" component={TopicEdit} />
+                <Route path="/link/:id" component={LinkEdit} />
+                <Route path="/about" component={About} />
+                <Route path="/login" component={Login} />
+                <Route path="/register" component={Register} />
                 <Route component={NotFoundPage} />
             </Switch>
             <ToastContainer />

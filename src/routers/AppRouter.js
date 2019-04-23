@@ -1,5 +1,5 @@
 import React from 'react'
-import { Route, Switch, BrowserRouter } from 'react-router-dom'
+import { Route, Switch, HashRouter } from 'react-router-dom'
 import { browserHistory } from 'react-router'
 import Home from './../containers/Home'
 import Topics from './../containers/Topics'
@@ -15,7 +15,7 @@ import 'react-toastify/dist/ReactToastify.css'
 
 const AppRouter = () => {
     return (
-        <BrowserRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter basename={process.env.PUBLIC_URL}>
             <Header />
             <Switch>
                 <Route
@@ -51,7 +51,7 @@ const AppRouter = () => {
                 <Route component={NotFoundPage} />
             </Switch>
             <ToastContainer />
-        </BrowserRouter>
+        </HashRouter>
     )
 }
 

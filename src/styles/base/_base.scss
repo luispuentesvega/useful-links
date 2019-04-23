@@ -27,3 +27,22 @@ button:disabled {
     font-size: 1.2rem;
     width: 80%;
 }
+
+.notification {
+    width: 100%;
+    text-align: center;
+    margin-top: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    max-width: 900px;
+    font-size: 1.3rem;
+    &__button {
+        a {
+            cursor: pointer;
+        }
+    }
+    p {
+        margin: 3px;
+    }
+}

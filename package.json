@@ -2,7 +2,7 @@
   "name": "useful-links",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://luispuentesvega.github.io/useful-links/",
+  "homepage": "https://luispuentesvega.github.io/useful-links",
   "dependencies": {
     "axios": "^0.18.0",
     "babel-plugin-auto-import": "^1.0.5",

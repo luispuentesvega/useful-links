@@ -4,6 +4,7 @@ import Input from '../UI/Inputs/Input'
 import InputError from '../UI/InputError/InputError'
 import Button from '../UI/Buttons/Button'
 import PropTypes from 'prop-types'
+import { NavLink } from 'react-router-dom'
 
 const buttonStyle = {
     background: '#fff',
@@ -67,13 +68,11 @@ const LoginForm = props => {
                     <div style={registerStyle}>
                         <span>
                             Don't have an account{' '}
-                            <a
-                                href=""
-                                style={buttonRegister}
-                                onClick={props.onRegister}
-                            >
-                                Register
-                            </a>
+                            <span className="notification__button">
+                                <NavLink style={buttonRegister} to="/register">
+                                    Register
+                                </NavLink>
+                            </span>
                         </span>
                     </div>
                 </form>

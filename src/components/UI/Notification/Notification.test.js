@@ -16,7 +16,7 @@ describe('<Notification/>', () => {
         expect(wrapper.find('p')).toHaveLength(1)
     })
 
-    it('should has a notificacion class', () => {
+    it('should has a notification class', () => {
         expect(wrapper.find('.notification')).toHaveLength(1)
     })
 })

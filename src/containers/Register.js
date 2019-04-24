@@ -20,6 +20,8 @@ class Register extends Component {
     onSubmit = e => {
         e.preventDefault()
 
+        this.setState({ isValidating: true })
+
         fire.auth()
             .createUserWithEmailAndPassword(
                 this.state.email,

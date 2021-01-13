@@ -1,10 +1,13 @@
 SPA developed using React for storing useful links.
 
-Usage
-================
+# Usage
+
 ```
 npm start
 ```
-Demo
-================
-[Demo](https://luispuentesvega.github.io/useful-links/)
+
+# Demo
+
+[Click here!](https://luispuentesvega.github.io/useful-links/)
+
+![](https://i.postimg.cc/sDJhvKnK/useful-links.gif)

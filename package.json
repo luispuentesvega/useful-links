@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://luispuentesvega.github.io/useful-links",
   "dependencies": {
-    "axios": "^0.18.0",
+    "axios": "^0.21.1",
     "babel-plugin-auto-import": "^1.0.5",
     "babel-preset-expo": "^5.1.1",
     "cypress": "^6.2.1",
